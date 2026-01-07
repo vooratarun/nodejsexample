@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: combined-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-south-1:745392035468:certificate/269c2bf8-f5d0-4fb7-822d-92037654ebce
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+spec:
+  rules:
+    - host: api.vooratarun.in
+      http:
+        paths:
+          - path: /app
+            pathType: Prefix
+            backend:
+              service:
+                name: app-service
+                port:
+                  number: 80
+          - path: /hello
+            pathType: Prefix
+            backend:
+              service:
+                name: hello-service
+                port:
+                  number: 80
+          - path: /hello2
+            pathType: Prefix
+            backend:
+              service:
+                name: hello-service
+                port:
+                  number: 80

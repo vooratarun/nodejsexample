@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hello
-          image: 745392035468.dkr.ecr.ap-south-1.amazonaws.com/nodejsexample:${IMAGE_TAG}
+          image: 745392035468.dkr.ecr.ap-south-1.amazonaws.com/nodejsexample:latest
           ports:
             - containerPort: 80
 
